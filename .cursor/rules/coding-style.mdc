@@ -1,0 +1,78 @@
+---
+description: 프로젝트 공통 코딩 규칙
+alwaysApply: true
+---
+
+# 프로젝트 공통 규칙
+
+- 모든 주석과 커밋 메시지는 한국어로 작성한다.
+- JavaScript는 ES Modules(import/export) 문법만 사용한다.
+- 함수에는 항상 JSDoc 주석을 단다.
+- 외부 라이브러리 추가 시 먼저 이유를 설명한 뒤 동의를 구한다.
+
+# JavaScript 표준 스타일
+
+아래 규칙은 [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)와 [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)에서 널리 쓰이는 관례를 정리한 것이다.
+
+## 변수·타입
+
+- `var` 대신 `const`를 기본으로 사용하고, 재할당이 필요할 때만 `let`을 쓴다.
+- 객체·배열은 `new Object()`, `new Array()` 대신 리터럴(`{}`, `[]`)로 생성한다.
+- 얕은 복사·병합에는 `Object.assign()`보다 객체 스프레드(`{ ...obj }`)를 우선한다.
+- 타입 변환은 `String()`, `Number()`, `Boolean()` 또는 `!!`를 사용하고, `new String()` 등 래퍼 객체는 쓰지 않는다.
+- `parseInt()` 사용 시 항상 radix(보통 `10`)를 명시한다.
+
+## 문자열
+
+- 문자열은 작은따옴표(`'`)를 사용한다.
+- 동적 문자열 조합에는 `+` 연결보다 템플릿 리터럴(`` `...${value}...` ``)을 사용한다.
+- `eval()`은 사용하지 않는다.
+
+## 함수
+
+- 가변 인자에는 `arguments` 대신 rest 구문(`...args`)을 사용한다.
+- 기본값은 함수 본문에서 인자를 덮어쓰지 말고 매개변수 기본값 문법으로 선언한다.
+- 콜백에서 `this`를 보존할 때 `self`/`that` 대신 화살표 함수를 우선한다.
+
+## 모듈
+
+- `require`/`module.exports` 대신 `import`/`export`만 사용한다.
+- `import` 문은 파일 최상단에 모아 둔다.
+- 같은 경로에서 여러 번 import하지 않는다.
+- 와일드카드 import(`import * as`)는 피한다.
+- export는 불변(`const`) 바인딩을 우선한다.
+
+## 비교·제어
+
+- `==`, `!=` 대신 `===`, `!==`를 사용한다.
+- 불리언은 `if (flag)`처럼 단축 평가하고, 문자열·숫자는 빈 값 여부를 명시적으로 비교한다.
+- `null`/`undefined` 기본값에는 `||`보다 nullish coalescing(`??`)을 우선한다.
+- 중첩 삼항 연산자는 사용하지 않는다.
+- `switch`의 `case`/`default`에서 `let`, `const`, `function`, `class`를 선언할 때는 블록(`{}`)으로 감싼다.
+
+## 명명·파일
+
+- 변수·함수·인스턴스는 `camelCase`, 클래스·생성자는 `PascalCase`를 사용한다.
+- 의미 있는 이름을 쓰고, 한 글자 변수명은 루프 인덱스 등 예외적인 경우에만 허용한다.
+- 파일명은 소문자와 `-` 또는 `_`만 사용한다(예: `email-utils.js`).
+- 파일명은 default export 이름과 일치시킨다.
+
+## 포맷·공백
+
+- 들여쓰기는 공백 2칸을 사용하고 탭 문자는 쓰지 않는다.
+- 문장 끝에는 세미콜론을 명시한다.
+- `{` 앞, 키워드(`if`, `for` 등) 뒤, 이항 연산자 주변에는 공백 1칸을 둔다.
+- 함수 선언·호출에서 함수명과 `(` 사이에는 공백을 넣지 않는다.
+- 파일 끝에는 빈 줄 1줄로 마무리한다.
+- 한 줄이 길어질 때는 80~100자를 기준으로 줄바꿈을 고려한다.
+
+## 반복·컬렉션
+
+- 배열 순회에는 `for...of`보다 `map`, `filter`, `reduce`, `some`, `every`, `find` 등 고차 함수를 우선한다.
+- 객체 순회에는 `Object.keys()`, `Object.values()`, `Object.entries()`를 사용한다.
+
+## 금지·주의
+
+- `Object.prototype.hasOwnProperty`를 직접 호출하지 않고 `Object.hasOwn()` 또는 `Object.prototype.hasOwnProperty.call()`을 사용한다.
+- 프로토타입 메서드를 직접 호출하지 않는다.
+- 불필요한 타입 강제 변환과 암묵적 전역 변수 생성을 피한다.
